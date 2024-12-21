@@ -9,7 +9,7 @@ const initialState = {
   title: '',
   text: '',
   image: null
-}
+};
 
 const NewsForm = () => {
   const [form, setForm] = useState<NewsMutation>(initialState);

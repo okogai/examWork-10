@@ -25,9 +25,9 @@ export const createNews = createAsyncThunk<void, NewsMutation>(
   },
 );
 
-export const deleteNews = createAsyncThunk<void, string>(
+export const deleteNews = createAsyncThunk<void, number>(
   'news/deleteNews',
-  async (id: string) => {
+  async (id: number) => {
     await axiosAPI.delete(`news/${id}`);
   }
 );

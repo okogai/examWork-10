@@ -1,22 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { News } from '../../types';
 import { RootState } from '../../app/store.ts';
-import { deleteNews, fetchAllNews, fetchOneNews } from '../thunks/newsThunk.ts';
+import { fetchAllNews, fetchOneNews } from '../thunks/newsThunk.ts';
 
 interface NewsState {
   newsList: News[];
   fullNews: News[] | null;
   fetchingNewsListLoading: boolean;
   fetchingOneNewsLoading: boolean;
-  deleteLoading: boolean;
 }
 
 const initialState: NewsState = {
   newsList: [],
   fullNews: null,
   fetchingNewsListLoading: false,
-  fetchingOneNewsLoading: false,
-  deleteLoading: false
+  fetchingOneNewsLoading: false
 };
 
 export const selectNewsList = (state: RootState) => state.news.newsList;
@@ -49,15 +47,6 @@ const newsSlice = createSlice({
       })
       .addCase(fetchOneNews.rejected, (state) => {
         state.fetchingOneNewsLoading = false;
-      })
-      .addCase(deleteNews.pending, (state) => {
-        state.deleteLoading = true;
-      })
-      .addCase(deleteNews.fulfilled, (state) => {
-        state.deleteLoading = false;
-      })
-      .addCase(deleteNews.rejected, (state) => {
-        state.deleteLoading = false;
       });
   }
 });

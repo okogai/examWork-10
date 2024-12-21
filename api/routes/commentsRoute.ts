@@ -1,4 +1,4 @@
-import express, {query} from "express";
+import express from "express";
 import mysqlDb from "../mysqlDb";
 import {ResultSetHeader} from "mysql2";
 import {IComment} from "../types";

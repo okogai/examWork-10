@@ -33,6 +33,10 @@ const NewsList = () => {
           <div className="text-center">
             <Spinner />
           </div>
+        ) : newsList.length === 0 ? (
+          <div className="text-center">
+            <p>No news available at the moment.</p>
+          </div>
         ) : (
           newsList.map((news) => (
             <div className="col-md-5 mb-3" key={news.id}>

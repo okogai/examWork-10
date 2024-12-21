@@ -5,14 +5,14 @@ import { fetchOneNews } from "../../store/thunks/newsThunk.ts";
 import {
   selectFullNews,
   selectFullNewsLoading,
-} from "../../store/slices/newsSlice.ts";
+} from '../../store/slices/newsSlice.ts';
 import Spinner from "../UI/Spinner/Spinner.tsx";
 import {
   createNewComment,
   deleteComments,
   fetchComments,
 } from "../../store/thunks/commentsThunk.ts";
-import { selectComments } from "../../store/slices/commentsSlice.ts";
+import { selectComments, selectFetchingComments } from '../../store/slices/commentsSlice.ts';
 import dayjs from "dayjs";
 
 const initialState = {
@@ -32,6 +32,7 @@ const NewsDetail = () => {
   const post = useAppSelector(selectFullNews);
   const comments = useAppSelector(selectComments);
   const loading = useAppSelector(selectFullNewsLoading);
+  const fetchCommentsLoading = useAppSelector(selectFetchingComments);
 
   useEffect(() => {
     if (id) {
@@ -157,8 +158,19 @@ const NewsDetail = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? "Submitting..." : "Submit Comment"}
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={fetchCommentsLoading}
+          >
+            {fetchCommentsLoading && (
+              <span
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            )}
+            Send
           </button>
         </form>
       </div>

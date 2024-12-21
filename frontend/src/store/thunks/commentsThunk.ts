@@ -6,7 +6,11 @@ export const fetchComments = createAsyncThunk<IComment[], string>(
   "comments/fetchComments",
   async (id) => {
     const response = await axiosAPI.get(`comments?news_id=${id}`);
-    return response.data;
+    if (response.data){
+      return response.data;
+    } else {
+      return [];
+    }
   },
 );
 

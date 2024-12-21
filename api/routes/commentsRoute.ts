@@ -12,7 +12,7 @@ commentsRoute.get("/", async (req, res) => {
         const [result] = await connection.query("SELECT * FROM comments WHERE post_id = ?", [news_id]);
         const comments = result as IComment[];
         if (comments.length === 0) {
-            res.status(404).send("Comments not found");
+            res.send([]);
         } else {
             res.send(comments);
         }

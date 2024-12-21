@@ -1,26 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { News } from '../../types';
 import { RootState } from '../../app/store.ts';
-import { fetchAllNews, fetchOneNews } from '../thunks/newsThunk.ts';
+import { createNews, fetchAllNews, fetchOneNews } from '../thunks/newsThunk.ts';
 
 interface NewsState {
   newsList: News[];
   fullNews: News[] | null;
   fetchingNewsListLoading: boolean;
   fetchingOneNewsLoading: boolean;
+  addNewsLoading: boolean;
 }
 
 const initialState: NewsState = {
   newsList: [],
   fullNews: null,
   fetchingNewsListLoading: false,
-  fetchingOneNewsLoading: false
+  fetchingOneNewsLoading: false,
+  addNewsLoading: false
 };
 
 export const selectNewsList = (state: RootState) => state.news.newsList;
 export const selectFullNews = (state: RootState) => state.news.fullNews;
 export const selectNewsListLoading = (state: RootState) => state.news.fetchingNewsListLoading;
 export const selectFullNewsLoading = (state: RootState) => state.news.fetchingOneNewsLoading;
+export const selectAddNewsLoading = (state: RootState) => state.news.addNewsLoading;
 
 const newsSlice = createSlice({
   name: "news",
@@ -47,6 +50,15 @@ const newsSlice = createSlice({
       })
       .addCase(fetchOneNews.rejected, (state) => {
         state.fetchingOneNewsLoading = false;
+      })
+      .addCase(createNews.pending, (state) => {
+        state.addNewsLoading = true;
+      })
+      .addCase(createNews.fulfilled, (state) => {
+        state.addNewsLoading = false;
+      })
+      .addCase(createNews.rejected, (state) => {
+        state.addNewsLoading = false;
       });
   }
 });

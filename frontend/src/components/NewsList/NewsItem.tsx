@@ -10,11 +10,11 @@ interface Props {
 
 const NewsItem: React.FC<Props> = ({ news, removeNews }) => {
 
-  const imageUrl = news.image? news.image : 'https://vexpar.ru/wa-data/public/site/themes/insales/img/default.jpeg?v1630060161';
+  const imageUrl = news.image? 'http://localhost:8000/' + news.image : 'https://vexpar.ru/wa-data/public/site/themes/insales/img/default.jpeg?v1630060161';
 
   return (
     <div className="card h-100 d-flex">
-      <div className="row g-0 p-3 justify-content-between">
+      <div className="row p-3 justify-content-between align-items-center">
         <div className="col-md-4">
           <img src={imageUrl} className="img-fluid rounded-start" alt="..."/>
         </div>

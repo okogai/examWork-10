@@ -21,7 +21,15 @@ export const fetchOneNews = createAsyncThunk<News[], string>(
 export const createNews = createAsyncThunk<void, NewsMutation>(
   'news/createNews',
   async (news: NewsMutation) => {
-    await axiosAPI.post("news", news);
+    const formData = new FormData();
+    formData.append('title', news.title);
+    if (news.text) {
+      formData.append('text', news.text);
+    }
+    if (news.image) {
+      formData.append('image', news.image);
+    }
+    await axiosAPI.post("news", formData);
   },
 );
 

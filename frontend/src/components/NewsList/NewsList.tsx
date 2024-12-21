@@ -4,6 +4,7 @@ import { selectNewsList, selectNewsListLoading } from '../../store/slices/newsSl
 import { useEffect } from 'react';
 import { deleteNews, fetchAllNews } from '../../store/thunks/newsThunk.ts';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../UI/Spinner/Spinner.tsx';
 
 const NewsList = () => {
   const newsList = useAppSelector(selectNewsList);
@@ -22,9 +23,9 @@ const NewsList = () => {
 
   return (
     <div className="container mt-4">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2>News</h2>
-        <button className="btn btn-primary" onClick={() => navigate('/add-news')}>
+      <div className="d-flex justify-content-between align-items-center mb-4 px-5">
+        <h2 className="ms-5">News</h2>
+        <button className="btn btn-primary me-5" onClick={() => navigate('/add-news')}>
           Add News
         </button>
       </div>
@@ -32,9 +33,7 @@ const NewsList = () => {
       <div className="row justify-content-center">
         {loading ? (
           <div className="text-center">
-            <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
+            <Spinner/>
           </div>
         ) : (
           newsList.map((news) => (

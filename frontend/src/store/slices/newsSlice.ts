@@ -5,7 +5,7 @@ import { createNews, fetchAllNews, fetchOneNews } from '../thunks/newsThunk.ts';
 
 interface NewsState {
   newsList: News[];
-  fullNews: News[] | null;
+  fullNews: News | null;
   fetchingNewsListLoading: boolean;
   fetchingOneNewsLoading: boolean;
   addNewsLoading: boolean;
@@ -44,7 +44,7 @@ const newsSlice = createSlice({
       .addCase(fetchOneNews.pending, (state) => {
       state.fetchingOneNewsLoading = true;
       })
-      .addCase(fetchOneNews.fulfilled, (state, action: PayloadAction<News[]>) => {
+      .addCase(fetchOneNews.fulfilled, (state, action: PayloadAction<News>) => {
         state.fetchingOneNewsLoading = false;
         state.fullNews = action.payload;
       })

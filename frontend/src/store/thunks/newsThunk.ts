@@ -10,11 +10,11 @@ export const fetchAllNews = createAsyncThunk<News[], void>(
   }
 );
 
-export const fetchOneNews = createAsyncThunk<News[], string>(
+export const fetchOneNews = createAsyncThunk<News, string>(
   'news/fetchOneNews',
   async (id: string) => {
     const response = await axiosAPI.get(`news/${id}`);
-    return response.data;
+    return response.data[0];
   }
 );
 

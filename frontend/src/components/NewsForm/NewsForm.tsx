@@ -1,24 +1,26 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
-import React, { ChangeEvent, useState } from 'react';
-import { selectAddNewsLoading } from '../../store/slices/newsSlice.ts';
-import { NewsMutation } from '../../types';
-import FileInput from '../UI/FileInput/FileInput.tsx';
-import { createNews } from '../../store/thunks/newsThunk.ts';
+import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
+import React, { ChangeEvent, useState } from "react";
+import { selectAddNewsLoading } from "../../store/slices/newsSlice.ts";
+import { NewsMutation } from "../../types";
+import FileInput from "../UI/FileInput/FileInput.tsx";
+import { createNews } from "../../store/thunks/newsThunk.ts";
 
 const initialState = {
-  title: '',
-  text: '',
-  image: null
+  title: "",
+  text: "",
+  image: null,
 };
 
 const NewsForm = () => {
   const [form, setForm] = useState<NewsMutation>(initialState);
-  const [filename, setFilename] = useState<string>('');
+  const [filename, setFilename] = useState<string>("");
   const dispatch = useAppDispatch();
   const loading = useAppSelector(selectAddNewsLoading);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {name, value} = e.target;
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
@@ -35,12 +37,12 @@ const NewsForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.title.trim() === '' || form.text.trim() === '') {
+    if (form.title.trim() === "" || form.text.trim() === "") {
       alert("Please fill in all fields ");
     } else {
       await dispatch(createNews(form));
       setForm(initialState);
-      setFilename('');
+      setFilename("");
     }
   };
 
@@ -86,8 +88,18 @@ const NewsForm = () => {
             </div>
 
             <div className="d-flex justify-content-center">
-              <button type="submit" className="btn btn-primary" disabled={loading}>
-                {loading && <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>}
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={loading}
+              >
+                {loading && (
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                )}
                 Send
               </button>
             </div>

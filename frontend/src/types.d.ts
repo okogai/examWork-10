@@ -14,6 +14,6 @@ export interface IComment {
   created_at: string;
 }
 
-export type NewsMutation = Omit<News, id, created_at>
+export type NewsMutation = Omit<News, id, created_at>;
 
-export type CommentMutation = Omit<IComment, id, created_at>
+export type CommentMutation = Omit<IComment, id, created_at>;

@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef } from "react";
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -7,7 +7,7 @@ interface Props {
   filename: string;
 }
 
-const FileInput: React.FC<Props> = ({onChange, name, label, filename}) => {
+const FileInput: React.FC<Props> = ({ onChange, name, label, filename }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ const FileInput: React.FC<Props> = ({onChange, name, label, filename}) => {
   return (
     <>
       <input
-        style={{display: 'none'}}
+        style={{ display: "none" }}
         type="file"
         name={name}
         onChange={onFileChange}
@@ -43,7 +43,11 @@ const FileInput: React.FC<Props> = ({onChange, name, label, filename}) => {
             />
           </div>
           <div className="col-md-3">
-            <button type="button" className="btn btn-primary" onClick={activateInput}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={activateInput}
+            >
               Browse
             </button>
           </div>
@@ -51,7 +55,7 @@ const FileInput: React.FC<Props> = ({onChange, name, label, filename}) => {
         <input
           type="file"
           id="fileInput"
-          style={{display: "none"}}
+          style={{ display: "none" }}
           onChange={activateInput}
         />
       </div>

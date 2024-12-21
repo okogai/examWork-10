@@ -1,25 +1,25 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { CommentMutation, IComment } from '../../types';
-import axiosAPI from '../../utils/axiosAPI.ts';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { CommentMutation, IComment } from "../../types";
+import axiosAPI from "../../utils/axiosAPI.ts";
 
 export const fetchComments = createAsyncThunk<IComment[], string>(
-  'comments/fetchComments',
+  "comments/fetchComments",
   async (id) => {
     const response = await axiosAPI.get(`comments?news_id=${id}`);
     return response.data;
-  }
+  },
 );
 
 export const createNewComment = createAsyncThunk<void, CommentMutation>(
-  'comments/createNewComment',
+  "comments/createNewComment",
   async (comment: CommentMutation) => {
     await axiosAPI.post("comments", comment);
   },
 );
 
 export const deleteComments = createAsyncThunk<void, number>(
-  'comments/deleteComments',
+  "comments/deleteComments",
   async (id: number) => {
     await axiosAPI.delete(`comments/${id}`);
-  }
+  },
 );

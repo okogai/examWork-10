@@ -1,9 +1,12 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
-import NewsItem from './NewsItem.tsx';
-import { selectNewsList, selectNewsListLoading } from '../../store/slices/newsSlice.ts';
-import { useEffect } from 'react';
-import { deleteNews, fetchAllNews } from '../../store/thunks/newsThunk.ts';
-import Spinner from '../UI/Spinner/Spinner.tsx';
+import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
+import NewsItem from "./NewsItem.tsx";
+import {
+  selectNewsList,
+  selectNewsListLoading,
+} from "../../store/slices/newsSlice.ts";
+import { useEffect } from "react";
+import { deleteNews, fetchAllNews } from "../../store/thunks/newsThunk.ts";
+import Spinner from "../UI/Spinner/Spinner.tsx";
 
 const NewsList = () => {
   const newsList = useAppSelector(selectNewsList);
@@ -28,7 +31,7 @@ const NewsList = () => {
       <div className="row justify-content-center">
         {loading ? (
           <div className="text-center">
-            <Spinner/>
+            <Spinner />
           </div>
         ) : (
           newsList.map((news) => (
